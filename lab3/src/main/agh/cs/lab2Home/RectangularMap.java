@@ -3,7 +3,7 @@ package agh.cs.lab2Home;
 import java.util.*;
 
 public class RectangularMap implements IWorldMap {
-    private final Vector2d MAP_UPPER_RIGHT_CORNER, MAP_LOWER_LEFT_CORNER;
+    public final Vector2d MAP_UPPER_RIGHT_CORNER, MAP_LOWER_LEFT_CORNER;
     private List<Animal> animals;
     private final MapVisualizer mapVisualizer;
 
