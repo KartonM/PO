@@ -6,7 +6,7 @@ package agh.cs.lab2Home;
  *
  * @author apohllo
  */
-public class MapVisualizer {
+public abstract class MapVisualizer {
     private static final String EMPTY_CELL = " ";
     private static final String FRAME_SEGMENT = "-";
     private static final String CELL_SEGMENT = "|";
@@ -19,6 +19,8 @@ public class MapVisualizer {
     public MapVisualizer(IWorldMap map) {
         this.map = map;
     }
+
+    public abstract void display(Vector2d lowerLeft, Vector2d upperRight);
 
     /**
      * Convert selected region of the map into a string. It is assumed that the

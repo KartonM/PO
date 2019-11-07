@@ -12,7 +12,7 @@ public class RectangularMap implements IWorldMap {
         MAP_LOWER_LEFT_CORNER = new Vector2d(0, 0);
         MAP_UPPER_RIGHT_CORNER = new Vector2d(width - 1, height - 1);
         animals = new LinkedList<Animal>();
-        mapVisualizer = new MapVisualizer(this);
+        mapVisualizer = new SwingMapVisualizer(this);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RectangularMap implements IWorldMap {
     public void run(MoveDirection[] directions) {
         ListIterator<Animal> animalIterator = animals.listIterator();
         for(MoveDirection dir : directions) {
-            System.out.println(this);
+            mapVisualizer.display(MAP_LOWER_LEFT_CORNER, MAP_UPPER_RIGHT_CORNER);
             if(!animalIterator.hasNext()) animalIterator = animals.listIterator();
             animalIterator.next().move(dir);
         }
