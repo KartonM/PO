@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SwingMapVisualizer extends MapVisualizer {
-    private final int FONT_SIZE = 32;
+    private final int FONT_SIZE = 24;
     private final long ANIMATION_FRAME_DURATION = 500;
 
     private JFrame frame = null;
@@ -34,8 +34,8 @@ public class SwingMapVisualizer extends MapVisualizer {
     private void initializeJFrame(StringDimensions dim) {
         frame = new JFrame();
         textArea = new JTextArea("Loading...", dim.maxLineLength, dim.linesCount);
-        int windowWidth = dim.maxLineLength *FONT_SIZE*3/4;
-        int windowHeight = dim.maxLineLength *FONT_SIZE/2;
+        int windowWidth = dim.maxLineLength *FONT_SIZE * 2; //*3/4;
+        int windowHeight = dim.maxLineLength *FONT_SIZE * 2;///2;
 
 
         textArea.setBounds(0, 0, windowWidth, windowHeight);

@@ -1,5 +1,7 @@
 package agh.cs.lab2Home;
 
+import java.util.Random;
+
 public class Vector2d {
     public final int x;
     public final int y;
@@ -48,5 +50,11 @@ public class Vector2d {
 
     public Vector2d opposite() {
         return new Vector2d(this.x*-1, this.y*-1);
+    }
+
+    public static Vector2d getRandomVectorInRange(Vector2d lowerLeftBound, Vector2d upperRightBound) {
+        Random random = new Random();
+        return new Vector2d(random.nextInt((upperRightBound.x - lowerLeftBound.x) - 1) + lowerLeftBound.x,
+                            random.nextInt((upperRightBound.y - lowerLeftBound.y) - 1) + lowerLeftBound.y);
     }
 }
