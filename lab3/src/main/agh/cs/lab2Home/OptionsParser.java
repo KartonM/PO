@@ -16,6 +16,6 @@ public class OptionsParser {
         if(s.equals("l") || s.equals("left")) return MoveDirection.LEFT;
         if(s.equals("r") || s.equals("right")) return MoveDirection.RIGHT;
 
-        return null;
+        throw new IllegalArgumentException(s + " is not legal move specification");
     }
 }

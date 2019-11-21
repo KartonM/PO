@@ -18,16 +18,6 @@ public class RectangularMap extends AbstractWorldMap {
     }
 
     @Override
-    public boolean isOccupied(Vector2d position) {
-        return animals.stream().anyMatch(a -> a.getPosition().equals(position));
-    }
-
-    @Override
-    public Object objectAt(Vector2d position) {
-        return animals.stream().filter(a -> a.getPosition().equals(position)).findFirst().orElse(null);
-    }
-
-    @Override
     protected Vector2d getUpperRightCorner() {
         return MAP_UPPER_RIGHT_CORNER;
     }

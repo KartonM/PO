@@ -1,16 +1,14 @@
 package agh.cs.lab2Home;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class GrassField extends AbstractWorldMap {
     private final int MAP_SPREAD_RATIO = 10;
-    private List<Grass> grassFields;
+    private Map<Vector2d, Grass> grassFields;
 
     public GrassField(int grassFieldsCount) {
         super();
-        grassFields = new LinkedList<Grass>();
+        grassFields = new HashMap<Vector2d, Grass>();
         placeGrass(grassFieldsCount);
     }
 
@@ -21,13 +19,12 @@ public class GrassField extends AbstractWorldMap {
 
     @Override
     public boolean isOccupied(Vector2d position) {
-        return animals.stream().anyMatch(a -> a.getPosition().equals(position)) ||
-                grassFields.stream().anyMatch(g -> g.getPosition().equals(position));
+        return super.isOccupied(position) || grassFields.get(position) != null;
     }
 
     @Override
     public Object objectAt(Vector2d position) {
-        Animal animal = animalAt(position);
+        Object animal = super.objectAt(position);
 
         return animal != null ? animal : grassAt(position);
     }
@@ -38,8 +35,8 @@ public class GrassField extends AbstractWorldMap {
         for(Animal animal : animals) {
             upperRightCorner = upperRightCorner.upperRight(animal.getPosition());
         }
-        for(Grass grass : grassFields) {
-            upperRightCorner = upperRightCorner.upperRight(grass.getPosition());
+        for(Vector2d grassPosition : grassFields.keySet()) {
+            upperRightCorner = upperRightCorner.upperRight(grassPosition);
         }
         return upperRightCorner;
     }
@@ -50,24 +47,14 @@ public class GrassField extends AbstractWorldMap {
         for(Animal animal : animals) {
             lowerLeftCorner = lowerLeftCorner.lowerLeft(animal.getPosition());
         }
-        for(Grass grass : grassFields) {
-            lowerLeftCorner = lowerLeftCorner.lowerLeft(grass.getPosition());
+        for(Vector2d grassPosition : grassFields.keySet()) {
+            lowerLeftCorner = lowerLeftCorner.lowerLeft(grassPosition);
         }
         return lowerLeftCorner;
     }
 
-    private Animal animalAt(Vector2d position) {
-        return animals.stream()
-                .filter(a -> a.getPosition().equals(position))
-                .findFirst()
-                .orElse(null);
-    }
-
     private Grass grassAt(Vector2d position) {
-        return grassFields.stream()
-                .filter(g -> g.getPosition().equals(position))
-                .findFirst()
-                .orElse(null);
+        return grassFields.get(position);
     }
 
     private void placeGrass(int numberOfGrassFields) {
@@ -77,7 +64,7 @@ public class GrassField extends AbstractWorldMap {
         for(int i = 0; i < numberOfGrassFields; i++) {
             if(isFirstGrassPlacement) {
                 Vector2d emptyPosition = rollGrassPosition(new Vector2d(0,0), new Vector2d(grassRange, grassRange));
-                grassFields.add(new Grass(emptyPosition));
+                grassFields.put(emptyPosition, new Grass(emptyPosition));
             }
         }
     }

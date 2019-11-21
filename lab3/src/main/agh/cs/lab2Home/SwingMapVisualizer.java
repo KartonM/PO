@@ -34,8 +34,8 @@ public class SwingMapVisualizer extends MapVisualizer {
     private void initializeJFrame(StringDimensions dim) {
         frame = new JFrame();
         textArea = new JTextArea("Loading...", dim.maxLineLength, dim.linesCount);
-        int windowWidth = dim.maxLineLength *FONT_SIZE * 2; //*3/4;
-        int windowHeight = dim.maxLineLength *FONT_SIZE * 2;///2;
+        int windowWidth = dim.maxLineLength *FONT_SIZE; //*3/4;
+        int windowHeight = dim.maxLineLength *FONT_SIZE;///2;
 
 
         textArea.setBounds(0, 0, windowWidth, windowHeight);

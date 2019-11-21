@@ -57,4 +57,12 @@ public class Vector2d {
         return new Vector2d(random.nextInt((upperRightBound.x - lowerLeftBound.x) - 1) + lowerLeftBound.x,
                             random.nextInt((upperRightBound.y - lowerLeftBound.y) - 1) + lowerLeftBound.y);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 13;
+        hash += this.x * 31;
+        hash += this.y * 17;
+        return hash;
+    }
 }
